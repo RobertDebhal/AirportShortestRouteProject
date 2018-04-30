@@ -1,4 +1,5 @@
 import csv
+from __builtin__ import False
 
 class Aircraft:
     """
@@ -6,28 +7,29 @@ class Aircraft:
     
     For the purpose of this project fuel capacity in litres is the most important feature.
     """
-    __MIN_FUEL = 100
 
-    def __init__(self,csvFile,flightNumber=''):
-        AircraftTable={}
-        with open(csvFile) as csvFile:
-            csvOpen = csv.reader(csvFile,delimiter=',')
-            
+    def __init__(self,code,maxFuel):
+        self.__code=code 
+        self._maxFuel=float(maxFuel)
+        self.__fuel=float(maxFuel) #private attribute containing current fuel in aircraft. Aircraft is assumed to start journey with full tank.
+        self.__fuelCheck=False # Boolean to determine if aircraft has sufficient fuel for journey. Initialised to False.
         
-        self.flightNumber=flightNumber #you must have a flight number assigned to fly
-        self.__fuel=0 #private attribute containing current fuel in aircraft
-        self.__fuelCheck=False #this is a boolean flag for a pre-flight check
-        self._maxFuel=self.__MIN_FUEL
-        self.__flightClearance=False
-
-    def fuelCheck(self):
-        if self.__fuel<self.__MIN_FUEL:
+    def fuelCheck(self,distance):
+        """
+        Function to determine if aircraft has sufficient fuel to make a journey of a given distance.
+        
+        It is assumed that distance is in km and the fuel is in litres with 1 litre being used per km.
+        """
+        if self.__fuel<distance:
             self.__fuelCheck = False
         else:
             self.__fuelCheck = True
         return self.__fuelCheck
 
-    def fuelLevel(self):
+    def getFuelLevel(self):
+        """
+        Returns current fuel
+        """
         return self.__fuel
         
     def reFuel(self,rate):
@@ -44,4 +46,9 @@ class Aircraft:
             fuel_cost = (self._maxFuel - self.__fuel)*rate
             
         return fuel_cost
-        
+    
+    def print_str(self):
+        """
+        To string method
+        """
+        print(self.__code,self.__fuel,self._maxFuel)

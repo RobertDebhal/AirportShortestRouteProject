@@ -1,8 +1,8 @@
 class Airport:
     def __init__(self,code,lat,lng,country):
         self.code=code 
-        self.lat=lat
-        self.lng=lng
+        self.lat=float(lat)
+        self.lng=float(lng)
         self.country=country
     
     def getLat(self):

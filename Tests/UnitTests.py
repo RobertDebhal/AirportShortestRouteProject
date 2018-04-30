@@ -51,7 +51,7 @@ class UnitTests(unittest.TestCase):
         assert_test=True
         for route in itinerary.get_itinerary():
             for airport in route:
-                if len(airport)!=3 or route[0]!=route[-1]:
+                if len(airport)!=3 and airport != route[-1]:
                     assert_test=False    
         self.assertTrue(assert_test=True)
         
@@ -66,7 +66,7 @@ class UnitTests(unittest.TestCase):
         aircraft_table = AircraftTable('../input/aircraft.csv')
         currency= Currency('../input/countrycurrency.csv','../input/currencyrates.csv')
         graph=GraphRouteConstructor(itinerary.get_itinerary()[0],atlas,currency)
-        self.assertTrue(graph.shortest_path(itinerary.get_itinerary()[0][0], aircraft_table.getAircraft('747'), atlas)=="This journey is infeasible for your aircraft")    
+        self.assertTrue(graph.shortest_path(aircraft_table.getAircraft('747'), atlas)=="This journey is infeasible for your aircraft")    
     
     def test_shortest_path_feasible(self):
         """
@@ -79,7 +79,7 @@ class UnitTests(unittest.TestCase):
         aircraft_table = AircraftTable('../input/aircraft.csv')
         currency= Currency('../input/countrycurrency.csv','../input/currencyrates.csv')
         graph=GraphRouteConstructor(itinerary.get_itinerary()[0],atlas,currency)
-        self.assertTrue(graph.shortest_path(itinerary.get_itinerary()[0][0], aircraft_table.getAircraft('747'), atlas)!="This journey is infeasible for your aircraft")
+        self.assertTrue(graph.shortest_path(aircraft_table.getAircraft('747'), atlas)!="This journey is infeasible for your aircraft")
         
     def test_cost_shortest_path(self):
         """
@@ -90,7 +90,7 @@ class UnitTests(unittest.TestCase):
         aircraft_table = AircraftTable('../input/aircraft.csv')
         currency= Currency('../input/countrycurrency.csv','../input/currencyrates.csv')
         graph=GraphRouteConstructor(itinerary.get_itinerary()[0],atlas,currency)
-        cost=graph.shortest_path(itinerary.get_itinerary()[0][0], aircraft_table.getAircraft('747'), atlas)[1]
+        cost=graph.shortest_path(aircraft_table.getAircraft('747'), atlas)[1]
         #SNN to DUB, DUB to OSL, OSL to SNN
         #194+1291+0.1155*1476=1655.48
         self.assertTrue(cost==1655.48) 
