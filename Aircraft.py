@@ -1,5 +1,4 @@
 import csv
-from __builtin__ import False
 
 class Aircraft:
     """

@@ -1,4 +1,3 @@
-import sys
 from GraphDirected import GraphDirected
 from Itinerary import Itinerary
 from AircraftTable import AircraftTable
@@ -57,7 +56,7 @@ class GraphRouteConstructor(GraphDirected):
         cost=0
         
         while len(to_visit)>0:
-            min_distance=sys.maxint
+            min_distance=50000 #greater than circumference of the earth so any viable journey will always be less than min_distance
             for neighbour in self.get_neighbours(current):
                 dist=self.get_weight(current, neighbour)
                 if dist < min_distance and neighbour in to_visit:

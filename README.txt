@@ -1,5 +1,5 @@
-Airports
-========
+Airports12751005
+================
 
 This is a candidate solution for the term project of COMP20230. Credit to Khalil Muhammad for the README template.
 
@@ -15,8 +15,9 @@ Installation and Setup
 Run the following commands in Terminal:
 
 ```
-git clone git@github.com:micaleel/airports.git && cd /airports
-conda env create -f environment.yml
+git clone https://github.com/RobertDebhal/AirportShortestRouteProject.git && cd AirportShortestRouteProject
+conda create -n environment
+source activate environment
 pip install -r requirements.txt
 ```
 
