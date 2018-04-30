@@ -12,13 +12,13 @@ class GraphRouteConstructor(GraphDirected):
 
     def __init__(self,itinerary,atlas,currency):
         """
-        Instantiates a graph object using BFS_construct for a single route in a given itinerary
+        Instantiates a graph object using BFS_construct for a given itinerary
         """
         GraphDirected.__init__(self)
         self.airports=itinerary[:len(itinerary)-1]
         self.start=itinerary[0]
         self.aircraft_code=itinerary.pop()
-        self.BFS_construct(itinerary,atlas,currency)
+        self.BFS_construct(self.airports,atlas,currency)
         
     def BFS_construct(self,itinerary,atlas,currency):
         """
@@ -50,7 +50,7 @@ class GraphRouteConstructor(GraphDirected):
         '''
         
         current=self.start
-        path = [self.start]
+        path = [self.start] 
         to_visit=self._vertices
         to_visit.remove(self.start)
         cost=0
@@ -72,4 +72,6 @@ class GraphRouteConstructor(GraphDirected):
         path.append(self.start)
         cost+=self.get_weight(current,self.start)
         cost=round(cost,2)
+        if atlas.getDistanceBetweenAirports(current,self.start)>aircraft._maxFuel:
+                return "This journey is infeasible for your aircraft"
         return path, cost    

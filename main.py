@@ -51,11 +51,13 @@ if __name__ == "__main__":
     #Initialise currency table using project files
     currency= c.Currency('input/countrycurrency.csv','input/currencyrates.csv')
     
-    graphs = [] # make empty stack (reinforced using only append() ('push') and pop())
+    graphs = [] # make empty stack (reinforced using only .append() ('push') and .pop())
+                # stack makes sense as we do not need to retain the order of the itinerary (route is stored in each graph)
+                # and insertion/deletion are O(1)
     for i in itinerary:
         graph=gc.GraphRouteConstructor(i,atlas,currency)
         graphs.append(graph)
-    with open('bestRoutes.csv','w') as best:
+    with open('bestroutes.csv','w') as best:
         csvOpen = csv.writer(best,delimiter=',')
         csvOpen.writerow(["Aircraft","Airports","Cheapest Path","Feasibility","Fuel Cost"])
         while len(graphs)>0:

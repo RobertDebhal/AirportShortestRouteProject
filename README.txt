@@ -31,6 +31,8 @@ python main.py
 You will be prompted to enter the path to an itinerary file. The correct path must be specified and the file mustbe in the format specified below.
 Format: The file should be a csv with 6 columns of data, the first five columns should be valid three letter airport codes which can be found in input/airport.csv and the last column shoul be an aircraft code which can be found in input/aircraft.csv 
 
+Cheapest route (if feasible) will be output to bestRutes.csv file in same directory.
+
 Running the Tests
 ------------------
 

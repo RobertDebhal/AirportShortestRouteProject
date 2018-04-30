@@ -16,12 +16,6 @@ class Itinerary:
     def get_itinerary(self):    
         return self.Itinerary
 
-sample_itinerary_graph = {"DUB":["JFK","SYD","SFA"],
-                          "JFK":["DUB","SYD","SFA"],
-                          "SYD":["DUB","JFK","SFA"],
-                          "SFA":["DUB","JFK","SYD"]}
-
-
 if __name__=="__main__":
     Itinerary=Itinerary('input/testroutes.csv')
     

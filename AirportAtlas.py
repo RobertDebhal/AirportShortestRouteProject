@@ -1,7 +1,6 @@
 import Airport
 import csv
 from math import pi,sin,cos,acos
-from audioop import ratecv
 
 class AirportAtlas:
     """

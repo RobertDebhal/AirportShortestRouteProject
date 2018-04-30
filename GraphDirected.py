@@ -1,15 +1,12 @@
-import sys
-from platform import dist
-
 class GraphDirected:
     
     def __init__(self):
         self._my_graph={}
-        self._vertices=[]
+        self._vertices=set()
         
     def add_vertex(self, node):
         self._my_graph[node]= {}
-        self._vertices.append(node)
+        self._vertices.add(node)
         
     def add_edge(self,node, neighbour, weight):
         self._my_graph[node][neighbour]=weight
@@ -27,8 +24,6 @@ class GraphDirected:
         for key in self._my_graph.keys():
             print(key, self._my_graph[key])
     
-    
-        
 
 if __name__=="__main__":
     graph = GraphDirected()
@@ -48,6 +43,4 @@ if __name__=="__main__":
     graph.add_edge("MUP","ORK",100)
     graph.add_edge("MUP","DUB",400)
     graph.add_edge("MUP","SYD",16900)
-    print(graph.shortest_path('DUB'))
-    
-    
+    graph.print_str()
